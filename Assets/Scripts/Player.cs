@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     //internas
     [SerializeField]
-    float playerSpeed = 10;
+    float playerSpeed = 5;
     [SerializeField]
     float playerJump;    
     // Start is called before the first frame update
@@ -35,12 +35,12 @@ public class Player : MonoBehaviour
     {
         _playerRb.velocity = new Vector2(mov.x*playerSpeed,_playerRb.velocity.y);
 
-        bool isRunning = Mathf.Abs(_playerRb.velocity.x) > Mathf.Epsilon;
+        bool IsRunning = Mathf.Abs(_playerRb.velocity.x) > Mathf.Epsilon;
 
-        _playerAnimator.SetBool(Utils.Constants.IS_RUNNING,isRunning);
+        _playerAnimator.SetBool(Utils.Constants.IS_RUNNING,IsRunning);
            
 
-        if(isRunning)
+        if(IsRunning)
             FlipSprite();
         
     }
