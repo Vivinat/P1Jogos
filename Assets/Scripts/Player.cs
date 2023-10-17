@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Utils;
 
 public class Player : MonoBehaviour
@@ -16,12 +18,19 @@ public class Player : MonoBehaviour
     float playerSpeed = 5;
     [SerializeField]
     float playerJump;    
+    
+    bool canDoubleJump = false;
+    private int doubleJumpQuant = 5;
+
+    public TextMeshProUGUI jumpText; 
+    
     // Start is called before the first frame update
     void Start()
     {
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
+       jumpText.text = ("Pulos: " + doubleJumpQuant);
     }
 
     // Update is called once per frame
@@ -51,14 +60,25 @@ public class Player : MonoBehaviour
     }
    
     void OnMove(InputValue inputValue){
-        //print("Movimentação!");
         mov = inputValue.Get<Vector2>();
-        //print($"X: {movHor.x} Y: {movHor.y}");
     }
-
+    
     void OnJump(InputValue inputValue)
     {
-        if(inputValue.isPressed && _playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")) )
-            _playerRb.velocity = new Vector2(_playerRb.velocity.x*1.1f,playerJump);
+        if (inputValue.isPressed)
+        {
+            if (_playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            {
+                _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
+                canDoubleJump = true;
+            }
+            else if (canDoubleJump && doubleJumpQuant > 0)
+            {
+                _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
+                canDoubleJump = false;
+                doubleJumpQuant--;
+                jumpText.text = ("Pulos " + doubleJumpQuant);
+            }
+        }
     }
 }
