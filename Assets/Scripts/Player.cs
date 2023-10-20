@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     float playerSpeed = 5;
     [SerializeField]
-    float playerJump;    
+    float playerJump;
+    
     
     bool canDoubleJump = false;
     private int doubleJumpQuant = 5;
 
-    public TextMeshProUGUI jumpText; 
+    public TextMeshProUGUI jumpText;
+    public TextMeshProUGUI coinText;
+    public int coinQuant;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
        jumpText.text = ("Pulos: " + doubleJumpQuant);
+       coinText.text = ("Moedas: " + coinQuant);
     }
 
     // Update is called once per frame
@@ -79,6 +83,28 @@ public class Player : MonoBehaviour
                 doubleJumpQuant--;
                 jumpText.text = ("Pulos " + doubleJumpQuant);
             }
+        }
+    }
+
+    public void AddCoin()
+    {
+        coinQuant++;
+        coinText.text = ("Moedas: " + coinQuant);
+    }
+
+    void OnBuy(InputValue inputValue)
+    {
+        if (coinQuant > 0)
+        {
+            doubleJumpQuant += 1;
+            coinQuant -= 1;
+            coinText.text = ("Moedas: " + coinQuant);
+            jumpText.text = ("Pulos: " + doubleJumpQuant);
+            Debug.Log("Comprou");
+        }
+        else
+        {
+            Debug.Log("Sem grana chefe");    
         }
     }
 }
