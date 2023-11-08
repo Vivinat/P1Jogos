@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,20 +13,27 @@ public class Player : MonoBehaviour
     Rigidbody2D _playerRb;
     BoxCollider2D _playerCollider;
     Vector2 mov;
-
+    [SerializeField]private CinemachineBrain maincamera;
+    
     //internas
-    [SerializeField]
-    float playerSpeed = 5;
-    [SerializeField]
-    float playerJump;
+    [SerializeField] float playerSpeed = 5;
+    [SerializeField] float playerJump;
+    [SerializeField] private GameObject platform;
+
+    private CinemachineVirtualCamera vcam;
+    [SerializeField] private GameObject main_Camera;
+    [SerializeField] private Transform finishLine;
     
     
+    public int buildQuant;
     bool canDoubleJump = false;
-    private int doubleJumpQuant = 5;
+    public int doubleJumpQuant;
+    public int coinQuota;
 
     public TextMeshProUGUI jumpText;
     public TextMeshProUGUI coinText;
     public int coinQuant;
+
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +41,7 @@ public class Player : MonoBehaviour
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
-       jumpText.text = ("Pulos: " + doubleJumpQuant);
+       jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
        coinText.text = ("Moedas: " + coinQuant);
     }
 
@@ -81,15 +89,25 @@ public class Player : MonoBehaviour
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
                 canDoubleJump = false;
                 doubleJumpQuant--;
-                jumpText.text = ("Pulos " + doubleJumpQuant);
+                jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
             }
         }
     }
 
-    public void AddCoin()
+    public void AddColectable(string type)
     {
-        coinQuant++;
-        coinText.text = ("Moedas: " + coinQuant);
+        if (type == "coin")
+        {
+            coinQuant++;
+            coinText.text = ("Moedas: " + coinQuant);    
+        }
+
+        if (type == "block")
+        {
+            buildQuant++;
+            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+        }
+
     }
 
     void OnBuy(InputValue inputValue)
@@ -99,7 +117,7 @@ public class Player : MonoBehaviour
             doubleJumpQuant += 1;
             coinQuant -= 1;
             coinText.text = ("Moedas: " + coinQuant);
-            jumpText.text = ("Pulos: " + doubleJumpQuant);
+            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
             Debug.Log("Comprou");
         }
         else
@@ -107,4 +125,37 @@ public class Player : MonoBehaviour
             Debug.Log("Sem grana chefe");    
         }
     }
+    
+    void OnBuild(InputValue inputValue)
+    {
+        if (buildQuant > 0)
+        {
+            buildQuant -= 1;
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.z = 1; 
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            Instantiate(platform, worldPosition, Quaternion.identity);
+            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+        }
+        else
+        {
+            Debug.Log("Sem grana chefe");    
+        }
+    }
+
+    void OnFocus(InputValue inputValue)
+    {
+        vcam = main_Camera.GetComponent<CinemachineVirtualCamera>();
+        Debug.Log("EM foco");
+        vcam.Follow = finishLine;
+        StartCoroutine("Waiter");
+        vcam.Follow = transform;
+        
+    }
+
+    IEnumerator Waiter()
+    {
+        yield return new WaitForSeconds(10000);
+    }
+
 }
