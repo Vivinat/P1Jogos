@@ -13,16 +13,15 @@ public class Player : MonoBehaviour
     Rigidbody2D _playerRb;
     BoxCollider2D _playerCollider;
     Vector2 mov;
-    [SerializeField]private CinemachineBrain maincamera;
+    
+    [SerializeField] private CinemachineVirtualCamera vcam;
+    [SerializeField] Transform finishLine;
+    private bool finishInFocus = false;
     
     //internas
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float playerJump;
     [SerializeField] private GameObject platform;
-
-    private CinemachineVirtualCamera vcam;
-    [SerializeField] private GameObject main_Camera;
-    [SerializeField] private Transform finishLine;
     
     
     public int buildQuant;
@@ -145,17 +144,21 @@ public class Player : MonoBehaviour
 
     void OnFocus(InputValue inputValue)
     {
-        vcam = main_Camera.GetComponent<CinemachineVirtualCamera>();
-        Debug.Log("EM foco");
-        vcam.Follow = finishLine;
-        StartCoroutine("Waiter");
-        vcam.Follow = transform;
-        
+        if (finishInFocus == false)
+        {
+            Debug.Log("Em foco finish");
+            vcam.Follow = finishLine.transform;
+            finishInFocus = true;
+            return;
+        }
+        Debug.Log("Em foco player");
+        finishInFocus = false;
+        vcam.Follow = this.transform;
     }
 
     IEnumerator Waiter()
     {
-        yield return new WaitForSeconds(10000);
+        yield return new WaitForSeconds(5);
     }
 
 }

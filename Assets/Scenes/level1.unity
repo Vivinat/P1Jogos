@@ -11159,12 +11159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b63f9e4007ab7ac1a0959a5f9023fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maincamera: {fileID: 519420034}
+  vcam: {fileID: 939391092}
+  finishLine: {fileID: 653067819}
   playerSpeed: 6
   playerJump: 20
   platform: {fileID: 5535197475519186065, guid: af1430b81ff33f032961c823d6d81de0, type: 3}
-  main_Camera: {fileID: 939391091}
-  finishLine: {fileID: 653067819}
   buildQuant: 1
   doubleJumpQuant: 5
   coinQuota: 0
@@ -11736,13 +11735,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653067815}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.335, y: 11.779, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &653307117 stripped
 Transform:
@@ -12623,7 +12622,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2028135567
 PrefabInstance:
