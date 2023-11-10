@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utils;
 
 public class Player : MonoBehaviour
 {
+    //Componentes
     Animator _playerAnimator;
     Rigidbody2D _playerRb;
     BoxCollider2D _playerCollider;
@@ -16,8 +19,11 @@ public class Player : MonoBehaviour
     
     //Variaveis para Vcam poder focar o jogador
     [SerializeField] private CinemachineVirtualCamera vcam;
-    [SerializeField] Transform finishLine;
-    private bool finishInFocus = false;
+    private Transform finishLine;
+    private bool isFocusing = false;
+    
+    //Variavel para gravidade
+    private bool isGravitating = false;
     
     //internas
     [SerializeField] float playerSpeed = 5;
@@ -26,12 +32,13 @@ public class Player : MonoBehaviour
     public int buildQuant;
     bool canDoubleJump = false;
     public int doubleJumpQuant;
+    private bool isTakingDamage;
 
     //HUD
     public TextMeshProUGUI jumpText;
     public TextMeshProUGUI coinText;
     public int coinQuant;
-
+    
     
     // Start is called before the first frame update
     void Start()
@@ -47,10 +54,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movimentacao();
+        if (!isTakingDamage)
+        {
+            Movimentacao();            
+        }
+
     }
-
-
+    
     void Movimentacao()
     {
         _playerRb.velocity = new Vector2(mov.x*playerSpeed,_playerRb.velocity.y);
@@ -144,21 +154,60 @@ public class Player : MonoBehaviour
 
     void OnFocus(InputValue inputValue)
     {
-        if (finishInFocus == false)
+        if (isFocusing == false)
         {
             Debug.Log("Em foco finish");
             vcam.Follow = finishLine.transform;
-            finishInFocus = true;
+            isFocusing = true;
             return;
         }
         Debug.Log("Em foco player");
-        finishInFocus = false;
+        isFocusing = false;
         vcam.Follow = this.transform;
     }
 
+    private void OnRestart(InputValue inputValue)
+    {
+        GetComponent<PlayerInput>().DeactivateInput();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void OnGravity(InputValue inputValue)
+    {
+        if (isGravitating == false)
+        {
+            Debug.Log("Gravitando");
+            isGravitating = true;
+            _playerRb.gravityScale = -0.5f;
+            return;
+        }
+        Debug.Log("Removendo gravidade");
+        isGravitating = false;
+        _playerRb.gravityScale = 8;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(Waiter());
+        }
+    }
+    
     IEnumerator Waiter()
     {
-        yield return new WaitForSeconds(5);
+        isTakingDamage = true;
+        _playerRb.velocity = new Vector2(-transform.localScale.x * 3, 10.0f);
+        _playerAnimator.SetBool("IsDamage", true);
+        yield return new WaitForSecondsRealtime(0.1f);
+        _playerRb.velocity = Vector2.zero;
+        GetComponent<PlayerInput>().DeactivateInput();
+        Physics2D.IgnoreLayerCollision(8,10, true);
+        yield return new WaitForSecondsRealtime(1.5f);
+        _playerAnimator.SetBool("IsDamage", false);
+        GetComponent<PlayerInput>().ActivateInput();
+        Physics2D.IgnoreLayerCollision(8,10, false);
+        isTakingDamage = false;
     }
 
 }

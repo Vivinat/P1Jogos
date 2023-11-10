@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Start
   - FinishLine
+  - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Ground
   - Player
   - Moeda
-  - 
+  - Enemy
   - 
   - 
   - 

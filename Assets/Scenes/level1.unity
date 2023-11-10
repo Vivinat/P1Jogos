@@ -10976,7 +10976,7 @@ GameObject:
   - component: {fileID: 297775815}
   - component: {fileID: 297775816}
   - component: {fileID: 297775817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -11084,7 +11084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297775807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.59, y: 4.14, z: 0}
+  m_LocalPosition: {x: -9.24, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11160,7 +11160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vcam: {fileID: 939391092}
-  finishLine: {fileID: 0}
   playerSpeed: 6
   playerJump: 20
   platform: {fileID: 5535197475519186065, guid: af1430b81ff33f032961c823d6d81de0, type: 3}
@@ -11465,7 +11464,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 1e-45, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5899997, y: 4.14, z: -10}
+  m_LocalPosition: {x: -9.24, y: 0.34000012, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11886,7 +11885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939391091}
   m_LocalRotation: {x: 1e-45, y: -1e-45, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5899997, y: 4.14, z: -10}
+  m_LocalPosition: {x: -9.24, y: 0.34000012, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11977,6 +11976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1416184779}
   - component: {fileID: 1416184778}
+  - component: {fileID: 1416184780}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -12014,30 +12014,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1505896630
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1505896632}
-  - component: {fileID: 1505896631}
-  m_Layer: 0
-  m_Name: StageController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1505896631
+--- !u!114 &1416184780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505896630}
+  m_GameObject: {fileID: 1416184777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bc4860e17c30be9188a9707ec541aab, type: 3}
@@ -12045,21 +12028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprint: {fileID: 11400000, guid: 23ddaaf35de51b1f287ecc9677858b1e, type: 2}
   player: {fileID: 297775816}
---- !u!4 &1505896632
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505896630}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.038358, y: 7.7782784, z: -0.07563633}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1663832197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5368751339702868511, guid: 534405cfee8bc2b48aa2da88c7f6ef42, type: 3}
@@ -12513,37 +12481,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916430012}
   m_CullTransparentMesh: 1
---- !u!1 &2008081442
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2008081443}
-  m_Layer: 0
-  m_Name: Start
-  m_TagString: Start
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2008081443
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2008081442}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4343462, y: 6.276835, z: -0.07680373}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2028135567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12618,7 +12555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8472494524659650105, guid: 2468c970ec96721449e9762194020760, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8472494524659650105, guid: 2468c970ec96721449e9762194020760, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12663,6 +12600,6 @@ PrefabInstance:
     - target: {fileID: 8472494524659650106, guid: 2468c970ec96721449e9762194020760, type: 3}
       propertyPath: stageController
       value: 
-      objectReference: {fileID: 1505896631}
+      objectReference: {fileID: 1416184780}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2468c970ec96721449e9762194020760, type: 3}
