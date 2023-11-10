@@ -8,7 +8,7 @@ public class FinishStage : MonoBehaviour
     [SerializeField] private StageController stageController;
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             stageController.CallQuota();
         }

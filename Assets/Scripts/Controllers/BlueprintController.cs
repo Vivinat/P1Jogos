@@ -16,7 +16,6 @@ public class BlueprintController : MonoBehaviour
         Debug.Log("Aplicando blueprint");
         player.buildQuant = blueprint.BuildNumber;
         player.doubleJumpQuant = blueprint.JumpQuant;
-        player.coinQuota = blueprint.CoinQuota;
         instructionText.text = ("Moedas Necessárias: " + blueprint.CoinQuota);
     }
 }

@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     BoxCollider2D _playerCollider;
     Vector2 mov;
     
+    //Variaveis para Vcam poder focar o jogador
     [SerializeField] private CinemachineVirtualCamera vcam;
     [SerializeField] Transform finishLine;
     private bool finishInFocus = false;
@@ -22,13 +23,11 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float playerJump;
     [SerializeField] private GameObject platform;
-    
-    
     public int buildQuant;
     bool canDoubleJump = false;
     public int doubleJumpQuant;
-    public int coinQuota;
 
+    //HUD
     public TextMeshProUGUI jumpText;
     public TextMeshProUGUI coinText;
     public int coinQuant;
@@ -37,6 +36,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        finishLine = GameObject.FindWithTag("FinishLine").transform;
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
