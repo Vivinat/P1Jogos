@@ -39,11 +39,14 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI coinText;
     public int coinQuant;
     
+    //Outros scripts
+    [SerializeField] private AudioManager audioManager;
     
     // Start is called before the first frame update
     void Start()
     {
         finishLine = GameObject.FindWithTag("FinishLine").transform;
+        audioManager = FindObjectOfType<AudioManager>();
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
@@ -91,12 +94,14 @@ public class Player : MonoBehaviour
             if (_playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
             {
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
+                audioManager.PlaySound("DoubleJump");
                 canDoubleJump = true;
             }
             else if (canDoubleJump && doubleJumpQuant > 0)
             {
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
                 canDoubleJump = false;
+                audioManager.PlaySound("Spend");
                 doubleJumpQuant--;
                 jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
             }
@@ -125,6 +130,7 @@ public class Player : MonoBehaviour
         {
             doubleJumpQuant += 1;
             coinQuant -= 1;
+            audioManager.PlaySound("Recover");
             coinText.text = ("Moedas: " + coinQuant);
             jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
             Debug.Log("Comprou");
@@ -142,6 +148,7 @@ public class Player : MonoBehaviour
             buildQuant -= 1;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 1; 
+            audioManager.PlaySound("Build");
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             Instantiate(platform, worldPosition, Quaternion.identity);
             jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
@@ -156,6 +163,7 @@ public class Player : MonoBehaviour
     {
         if (isFocusing == false)
         {
+            audioManager.PlaySound("Focus");
             Debug.Log("Em foco finish");
             vcam.Follow = finishLine.transform;
             isFocusing = true;
@@ -176,6 +184,7 @@ public class Player : MonoBehaviour
     {
         if (isGravitating == false)
         {
+            audioManager.PlaySound("Gravity");
             Debug.Log("Gravitando");
             isGravitating = true;
             _playerRb.gravityScale = -0.5f;
@@ -188,7 +197,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
+        if (col.gameObject.CompareTag("Bullet"))
         {
             StartCoroutine(Waiter());
         }

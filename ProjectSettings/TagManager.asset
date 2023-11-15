@@ -8,6 +8,9 @@ TagManager:
   - FinishLine
   - Enemy
   - Platform
+  - AudioManager
+  - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX
