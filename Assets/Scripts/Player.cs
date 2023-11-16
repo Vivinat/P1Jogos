@@ -194,13 +194,15 @@ public class Player : MonoBehaviour
         isGravitating = false;
         _playerRb.gravityScale = 8;
     }
-
-    private void OnCollisionEnter2D(Collision2D col)
+    
+    public void Hit()
     {
-        if (col.gameObject.CompareTag("Bullet"))
+        if (coinQuant > 0)
         {
-            StartCoroutine(Waiter());
+            coinQuant--;
+            coinText.text = ("Moedas: " + coinQuant);
         }
+        StartCoroutine(Waiter());
     }
     
     IEnumerator Waiter()
