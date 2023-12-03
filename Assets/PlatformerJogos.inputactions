@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gravity",
+                    "name": "Dash",
                     "type": "Button",
                     "id": "e14167c8-02f8-42f6-88c8-90d8bb3133dd",
                     "expectedControlType": "Button",
@@ -366,11 +366,11 @@
                 {
                     "name": "",
                     "id": "3f9fa58e-d704-46da-9133-9e4a74877a75",
-                    "path": "<Keyboard>/g",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gravity",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

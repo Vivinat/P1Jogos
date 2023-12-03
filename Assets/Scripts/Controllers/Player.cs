@@ -22,9 +22,6 @@ public class Player : MonoBehaviour
     private Transform finishLine;
     private bool isFocusing = false;
     
-    //Variavel para gravidade
-    private bool isGravitating = false;
-    
     //internas
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float playerJump;
@@ -61,7 +58,10 @@ public class Player : MonoBehaviour
         {
             Movimentacao();            
         }
-
+        if (_playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            _playerAnimator.SetBool("IsJumping", false);
+        }
     }
     
     void Movimentacao()
@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
                 doubleJumpQuant--;
                 jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
             }
+            _playerAnimator.SetBool("IsJumping", true);
         }
     }
 
@@ -180,20 +181,6 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void OnGravity(InputValue inputValue)
-    {
-        if (isGravitating == false)
-        {
-            audioManager.PlaySound("Gravity");
-            Debug.Log("Gravitando");
-            isGravitating = true;
-            _playerRb.gravityScale = -0.5f;
-            return;
-        }
-        Debug.Log("Removendo gravidade");
-        isGravitating = false;
-        _playerRb.gravityScale = 8;
-    }
     
     public void Hit()
     {
