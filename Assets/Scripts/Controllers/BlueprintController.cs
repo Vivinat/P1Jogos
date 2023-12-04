@@ -9,13 +9,15 @@ public class BlueprintController : MonoBehaviour
 {
     [SerializeField] private Blueprint blueprint;
     [SerializeField] private Player player;
-    [SerializeField] public TextMeshProUGUI instructionText;
+    [SerializeField] public TextMeshProUGUI jumpQuant;
+    [SerializeField] public TextMeshProUGUI platformQuant;
+    [SerializeField] public TextMeshProUGUI quotaQuant;
 
     public void Awake()
     {
         Debug.Log("Aplicando blueprint");
         player.buildQuant = blueprint.BuildNumber;
         player.doubleJumpQuant = blueprint.JumpQuant;
-        instructionText.text = ("Moedas Necessárias: " + blueprint.CoinQuota);
+        quotaQuant.text = ("Cota: " + blueprint.CoinQuota);
     }
 }

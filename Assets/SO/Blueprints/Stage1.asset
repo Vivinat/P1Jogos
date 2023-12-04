@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa60c7e5051359288d6c119c70c8b97, type: 3}
   m_Name: Stage1
   m_EditorClassIdentifier: 
-  BuildNumber: 1
-  CoinQuota: 10
-  JumpQuant: 5
+  BuildNumber: 10
+  CoinQuota: 0
+  JumpQuant: 10
   nextStage: Stage2

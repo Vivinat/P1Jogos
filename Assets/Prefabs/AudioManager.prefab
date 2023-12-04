@@ -47,37 +47,37 @@ MonoBehaviour:
   sounds:
   - audioSource: {fileID: 0}
     name: Build
-    clip: {fileID: 8300000, guid: 8b7850f0446f941ab8483def03e24045, type: 3}
-    volume: 1
-    pitch: 0.1
+    clip: {fileID: 8300000, guid: 0974355a31192cf42ac1c7f8998c3e44, type: 3}
+    volume: 0.5
+    pitch: 1
     loop: 0
   - audioSource: {fileID: 0}
-    name: Gravity
-    clip: {fileID: 8300000, guid: 836eb1e8e82e6f9158b899399608e7e5, type: 3}
-    volume: 1
-    pitch: 0.1
+    name: Jump
+    clip: {fileID: 8300000, guid: 7d32adcc3fcf73c4f8e1baf8ebf188d8, type: 3}
+    volume: 0.174
+    pitch: 1
     loop: 0
   - audioSource: {fileID: 0}
-    name: DoubleJump
-    clip: {fileID: 8300000, guid: c8e8125fa1fb2828abf58184ca357b77, type: 3}
-    volume: 1
-    pitch: 0.1
+    name: Hurt
+    clip: {fileID: 8300000, guid: 548ca26f4ff74c3499221ce532e79ab3, type: 3}
+    volume: 0.53
+    pitch: 1
     loop: 0
   - audioSource: {fileID: 0}
     name: Focus
     clip: {fileID: 8300000, guid: 853f9a169c3ba422090225b50859c3bd, type: 3}
     volume: 1
-    pitch: 0.1
+    pitch: 1
     loop: 0
   - audioSource: {fileID: 0}
-    name: Spend
-    clip: {fileID: 8300000, guid: 62b89d69de0aceda1b55ed1feae786c2, type: 3}
-    volume: 0.7
-    pitch: 0.1
-    loop: 0
+    name: Day
+    clip: {fileID: 8300000, guid: 609766e1f23fd414db8b2e0421cd3f7c, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
   - audioSource: {fileID: 0}
-    name: Recover
-    clip: {fileID: 8300000, guid: 62b89d69de0aceda1b55ed1feae786c2, type: 3}
-    volume: 1
-    pitch: 0.1
-    loop: 0
+    name: Night
+    clip: {fileID: 8300000, guid: 11e5bb7288a7a0d44b06756ed3d0f659, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1

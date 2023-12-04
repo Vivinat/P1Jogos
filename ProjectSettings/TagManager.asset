@@ -60,3 +60,6 @@ TagManager:
   - name: player
     uniqueID: 3205269687
     locked: 0
+  - name: finish
+    uniqueID: 2465608849
+    locked: 0

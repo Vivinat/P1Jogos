@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     //HUD
     public TextMeshProUGUI jumpText;
     public TextMeshProUGUI coinText;
+    public TextMeshProUGUI platformText;
     public int coinQuant;
     
     //Outros scripts
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
-       jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+       jumpText.text = ("Pulos: " + doubleJumpQuant);
+       platformText.text = "Plataformas: " + buildQuant; 
        coinText.text = ("Moedas: " + coinQuant);
     }
 
@@ -94,16 +96,15 @@ public class Player : MonoBehaviour
             if (_playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
             {
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
-                audioManager.PlaySound("DoubleJump");
+                audioManager.PlaySound("Jump");
                 canDoubleJump = true;
             }
             else if (canDoubleJump && doubleJumpQuant > 0)
             {
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
                 canDoubleJump = false;
-                audioManager.PlaySound("Spend");
                 doubleJumpQuant--;
-                jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+                jumpText.text = ("Pulos: " + doubleJumpQuant);
             }
             _playerAnimator.SetBool("IsJumping", true);
         }
@@ -120,7 +121,7 @@ public class Player : MonoBehaviour
         if (type == "block")
         {
             buildQuant++;
-            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+            platformText.text = "Plataformas: " + buildQuant;
         }
 
     }
@@ -131,9 +132,9 @@ public class Player : MonoBehaviour
         {
             doubleJumpQuant += 1;
             coinQuant -= 1;
-            audioManager.PlaySound("Recover");
+            
             coinText.text = ("Moedas: " + coinQuant);
-            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+            jumpText.text = ("Pulos: " + doubleJumpQuant);
             Debug.Log("Comprou");
         }
         else
@@ -152,7 +153,7 @@ public class Player : MonoBehaviour
             audioManager.PlaySound("Build");
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
             Instantiate(platform, worldPosition, Quaternion.identity);
-            jumpText.text = ("Pulos: " + doubleJumpQuant + '\n' + "Plataformas: " + buildQuant);
+            platformText.text = "Plataformas: " + buildQuant;
         }
         else
         {
