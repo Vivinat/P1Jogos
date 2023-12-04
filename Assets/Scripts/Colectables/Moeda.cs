@@ -15,14 +15,16 @@ public class Moeda : MonoBehaviour
     [SerializeField] private CollectableType type;
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (type == CollectableType.coin)
+        if (type == CollectableType.coin && col.CompareTag("Player") 
+                                         && col.GetComponent<Collider2D>())
         {
             AudioSource.PlayClipAtPoint( GetComponent<AudioSource>().clip , transform.position);
             player.AddColectable("coin");
             Destroy(gameObject);
         }
 
-        if (type == CollectableType.block)
+        if (type == CollectableType.block && col.CompareTag("Player")
+                                          && col.GetComponent<Collider2D>() is CapsuleCollider2D)
         {
             AudioSource.PlayClipAtPoint( GetComponent<AudioSource>().clip , transform.position);
             player.AddColectable("block");

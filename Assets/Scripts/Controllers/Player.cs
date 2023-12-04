@@ -115,7 +115,8 @@ public class Player : MonoBehaviour
         if (type == "coin")
         {
             coinQuant++;
-            coinText.text = ("Moedas: " + coinQuant);    
+            coinText.text = ("Moedas: " + coinQuant);
+            return;
         }
 
         if (type == "block")
