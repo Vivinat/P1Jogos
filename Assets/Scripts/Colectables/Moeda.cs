@@ -16,7 +16,7 @@ public class Moeda : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (type == CollectableType.coin && col.CompareTag("Player") 
-                                         && col.GetComponent<Collider2D>())
+                                         && col is CapsuleCollider2D)
         {
             AudioSource.PlayClipAtPoint( GetComponent<AudioSource>().clip , transform.position);
             player.AddColectable("coin");
@@ -24,7 +24,7 @@ public class Moeda : MonoBehaviour
         }
 
         if (type == CollectableType.block && col.CompareTag("Player")
-                                          && col.GetComponent<Collider2D>() is CapsuleCollider2D)
+                                          && col is CapsuleCollider2D)
         {
             AudioSource.PlayClipAtPoint( GetComponent<AudioSource>().clip , transform.position);
             player.AddColectable("block");
