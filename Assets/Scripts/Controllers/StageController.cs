@@ -24,12 +24,19 @@ public class StageController : MonoBehaviour
     private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
-        if (timeOfDay == TimeOfDay.Day)
+        if (timeOfDay == TimeOfDay.Day && !audioManager.IsPlaying("Day"))
         {
+            audioManager.StopSound("Menu");
             audioManager.PlaySound("Day");
             return;
         }
-        audioManager.PlaySound("Night");
+
+        if (timeOfDay == TimeOfDay.Night && !audioManager.IsPlaying("Night"))
+        {
+            audioManager.StopSound("Day");
+            audioManager.PlaySound("Night");
+            return;
+        }
     }
 
     public void CallQuota()

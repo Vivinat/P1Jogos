@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stage5
   m_EditorClassIdentifier: 
   BuildNumber: 3
-  CoinQuota: 0
+  CoinQuota: 1
   JumpQuant: 3
   nextStage: Stage6

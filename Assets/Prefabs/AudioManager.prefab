@@ -81,3 +81,15 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
+  - audioSource: {fileID: 0}
+    name: Menu
+    clip: {fileID: 8300000, guid: 9381608901a83f442ad51f7d6f7de999, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+  - audioSource: {fileID: 0}
+    name: Victory
+    clip: {fileID: 8300000, guid: 3c1515f69855d3c418de7f68f63d4467, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
