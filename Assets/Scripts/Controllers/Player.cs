@@ -48,9 +48,9 @@ public class Player : MonoBehaviour
        _playerRb = GetComponent<Rigidbody2D>();
        _playerAnimator = GetComponent<Animator>();
        _playerCollider = GetComponent<BoxCollider2D>();
-       jumpText.text = ("Pulos: " + doubleJumpQuant);
-       platformText.text = "Plataformas: " + buildQuant; 
-       coinText.text = ("Moedas: " + coinQuant);
+       jumpText.text = ("Jumps: " + doubleJumpQuant);
+       platformText.text = "Platforms: " + buildQuant; 
+       coinText.text = ("Coins: " + coinQuant);
     }
 
     // Update is called once per frame
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
                 _playerRb.velocity = new Vector2(_playerRb.velocity.x, playerJump);
                 canDoubleJump = false;
                 doubleJumpQuant--;
-                jumpText.text = ("Pulos: " + doubleJumpQuant);
+                jumpText.text = ("Jumps: " + doubleJumpQuant);
             }
             _playerAnimator.SetBool("IsJumping", true);
         }
@@ -115,14 +115,14 @@ public class Player : MonoBehaviour
         if (type == "coin")
         {
             coinQuant++;
-            coinText.text = ("Moedas: " + coinQuant);
+            coinText.text = ("Coins: " + coinQuant);
             return;
         }
 
         if (type == "block")
         {
             buildQuant++;
-            platformText.text = "Plataformas: " + buildQuant;
+            platformText.text = "Platforms: " + buildQuant;
         }
 
     }
@@ -134,8 +134,9 @@ public class Player : MonoBehaviour
             doubleJumpQuant += 1;
             coinQuant -= 1;
             
-            coinText.text = ("Moedas: " + coinQuant);
-            jumpText.text = ("Pulos: " + doubleJumpQuant);
+            coinText.text = ("Coins: " + coinQuant);
+            jumpText.text = ("Jumps: " + doubleJumpQuant);
+            AudioManager.instance.PlaySound("Buy");
             Debug.Log("Comprou");
         }
         else
@@ -182,14 +183,13 @@ public class Player : MonoBehaviour
         GetComponent<PlayerInput>().DeactivateInput();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
     
     public void Hit()
     {
         if (coinQuant > 0)
         {
             coinQuant--;
-            coinText.text = ("Moedas: " + coinQuant);
+            coinText.text = ("Coins: " + coinQuant);
         }
         StartCoroutine(Waiter());
     }

@@ -18,6 +18,6 @@ public class BlueprintController : MonoBehaviour
         Debug.Log("Aplicando blueprint");
         player.buildQuant = blueprint.BuildNumber;
         player.doubleJumpQuant = blueprint.JumpQuant;
-        quotaQuant.text = ("Cota: " + blueprint.CoinQuota);
+        quotaQuant.text = ("Quota: " + blueprint.CoinQuota);
     }
 }

@@ -556,8 +556,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Parab\xE9ns! Gra\xE7as aos seus esfor\xE7os, estamos podres de ricos!
-    Espere uma promo\xE7\xE3o na sua dire\xE7\xE3o, garoto!"
+  m_text: Congratulations! Thanks to your efforts, we are filthy rich! Expect a promotion
+    coming your way, kid!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 556a1c7cad2f6994d945a7b13ae01638, type: 2}
   m_sharedMaterial: {fileID: -7458226782296268012, guid: 556a1c7cad2f6994d945a7b13ae01638, type: 2}

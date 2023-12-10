@@ -17,7 +17,7 @@ public class InstructionController : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         player.GetComponent<PlayerInput>().DeactivateInput();
-        quotaText.text = "Cota: " + blueprint.CoinQuota;
+        quotaText.text = "Quota: " + blueprint.CoinQuota;
     }
 
     public void ClosePanel()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
@@ -24,6 +25,8 @@ public class MenuManager : MonoBehaviour
     public void CallMainMenu()
     {
         SceneManager.LoadScene("Menu");
+        AudioManager.instance.StopSound("Day");
+        AudioManager.instance.StopSound("Night");
     }
 
     public void CallTutorial()
@@ -44,5 +47,13 @@ public class MenuManager : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ReturnToGame()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        player.GetComponent<PlayerInput>().ActivateInput();
+        GameObject options = GameObject.FindWithTag("Options");
+        options.SetActive(false);
     }
 }

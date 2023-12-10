@@ -93,3 +93,9 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     loop: 1
+  - audioSource: {fileID: 0}
+    name: Buy
+    clip: {fileID: 8300000, guid: 505a1eb1bf169e84cbe8f1594a9541eb, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0

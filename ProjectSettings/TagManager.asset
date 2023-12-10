@@ -11,6 +11,7 @@ TagManager:
   - AudioManager
   - Bullet
   - Wall
+  - Options
   layers:
   - Default
   - TransparentFX

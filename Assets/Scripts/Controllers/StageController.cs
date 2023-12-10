@@ -44,12 +44,12 @@ public class StageController : MonoBehaviour
         endPhaseSummary.SetActive(true);
         if (player.coinQuant >= blueprint.CoinQuota)
         {
-            endPhaseSummary.GetComponentInChildren<TextMeshProUGUI>().text = "Cota Batida!";
+            endPhaseSummary.GetComponentInChildren<TextMeshProUGUI>().text = "Good job!";
             Debug.Log("Jogador tem numero igual ou maior ao obrigatorio. Passou");
             nextStageName = blueprint.nextStage;
             return;
         }
-        endPhaseSummary.GetComponentInChildren<TextMeshProUGUI>().text = "Fracasso...";
+        endPhaseSummary.GetComponentInChildren<TextMeshProUGUI>().text = "Failed...";
         nextStageName = SceneManager.GetActiveScene().name;
     }
     public void CallNextStage()
